@@ -8,27 +8,16 @@ fn main() {
     f.read_to_string(&mut contents)
         .expect("something went wrong reading the file");
 
-
-    let first_char = contents.chars().nth(0).unwrap().to_digit(10).unwrap();
+    let length = contents.trim().len();
 
     let mut sum = 0;
-    let mut prev = 0;
     for (i,c) in contents.trim().chars().enumerate() { 
         let n = c.to_digit(10).unwrap();
 
-        if i == 0 {
-            prev = n;
-            continue;
+        let semi_symmetric = (i + length/2) % length;
+        if contents.chars().nth(semi_symmetric).unwrap().to_digit(10).unwrap() == n {
+            sum = sum + n
         }
-
-
-        if prev == n {
-            sum = sum + prev;
-        }
-        prev = n;
-    }
-    if prev == first_char {
-        sum = sum + prev
     }
 
     println!("{}", sum)
