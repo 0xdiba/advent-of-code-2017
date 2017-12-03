@@ -7,25 +7,27 @@ fn main() {
     let mut chksum = 0;
     for line in BufReader::new(f).lines() {
         chksum += get_chksum(line.unwrap()); 
-        //println!("================= {}", get_chksum(line.unwrap()));
     }
 
     println!("{}",chksum);
 }
 
 fn get_chksum(line: String) -> i32 {
-    let mut max = std::i32::MIN;
-    let mut min = std::i32::MAX;
-    for num in line.split_whitespace() {
+    for (i,num) in line.split_whitespace().enumerate() {
         let n = num.parse::<i32>().unwrap();
-        if n > max {
-            max = n;
-        }
+        for (j,num2) in line.split_whitespace().enumerate() {
+            if i == j {
+                continue;
+            }
+            let n2 = num2.parse::<i32>().unwrap();
+            let div = n/n2;
+            let rem = n % n2;
+            if rem != 0 {
+                continue;
+            }
 
-        if n < min {
-            min = n;
-        }
+            return div;
+        }  
     }
-
-    return max-min;
+    panic!("No divisible numbers!");
 }
