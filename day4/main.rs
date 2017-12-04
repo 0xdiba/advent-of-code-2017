@@ -18,8 +18,12 @@ fn is_valid(line: String) -> bool {
     let passwds = line.split_whitespace();
     let size = line.split_whitespace().count();
     for (i, pass) in passwds.enumerate() {
+        let mut pass_chars: Vec<char> = pass.chars().collect();
+        pass_chars.sort();
         for j in i+1..size{
-            if pass == line.split_whitespace().nth(j).unwrap(){
+            let mut chars: Vec<char> = line.split_whitespace().nth(j).unwrap().chars().collect();
+            chars.sort();
+            if pass_chars == chars{
                 return false;
             }
         }
