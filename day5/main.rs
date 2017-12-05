@@ -16,7 +16,11 @@ fn main() {
     loop {
         no_jumps += 1;
         let next = jumps[pos];
-        jumps[pos] = jumps[pos] + 1; 
+        if next >= 3 {
+            jumps[pos] = jumps[pos] - 1; 
+        } else {
+            jumps[pos] = jumps[pos] + 1; 
+        };
         pos = (pos as i32 + next) as usize;
 
         if pos >= jumps.len() {
