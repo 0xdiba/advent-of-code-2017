@@ -14,13 +14,15 @@ fn main() {
     let mut n: i32 = 1;
 
     loop {
-        if n > input {panic!("Not found!");}
+        if n > input {
+            panic!("Not found!");
+        }
 
         for _ in 0..count {
             n += 1;
             x += direction;
             if input == n {
-                println!("{}", x.abs()+y.abs());
+                println!("{}", x.abs() + y.abs());
                 return;
             }
         }
@@ -28,7 +30,7 @@ fn main() {
             n += 1;
             y += direction;
             if input == n {
-                println!("{}", x.abs()+y.abs());
+                println!("{}", x.abs() + y.abs());
                 return;
             }
         }
