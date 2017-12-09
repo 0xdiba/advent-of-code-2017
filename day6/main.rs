@@ -33,10 +33,10 @@ fn main() {
 
             let hash = hash(banks.as_slice());
             if states.contains_key(&hash) {
-                println!("{}", steps);
+                println!("{}", steps - states.get(&hash).unwrap());
                 return;
             } else {
-                states.insert(hash, true);
+                states.insert(hash, steps);
             }
         }
     }
